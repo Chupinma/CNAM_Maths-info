@@ -4,7 +4,8 @@ from scipy.signal import convolve2d
 import matplotlib.pyplot as plt
 
 # Charger l'image en niveaux de gris
-img = Image.open("image.jpg").convert("L")
+filepath = r"D:\01_Travail_Etudes\01_Ecoles\CNAM\M2_2026-2027\Maths-info\Filtre de Camy\image.jpg"
+img = Image.open(filepath).convert("L")
 
 # Convertir en matrice numpy
 matrice = np.array(img)
