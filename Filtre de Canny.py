@@ -2,6 +2,8 @@ from PIL import Image
 import numpy as np
 from scipy.signal import convolve2d
 import matplotlib.pyplot as plt
+from skimage import feature
+import cv2 as cv
 
 # Charger l'image en niveaux de gris
 filepath = r"D:\01_Travail_Etudes\01_Ecoles\CNAM\M2_2026-2027\Maths-info\Filtre de Camy\image.jpg"
@@ -9,6 +11,12 @@ img = Image.open(filepath).convert("L")
 
 # Convertir en matrice numpy
 matrice = np.array(img)
+
+img2 = cv.imread(filepath, cv.IMREAD_GRAYSCALE)
+contours = cv.Canny(img2,100,200) #seuil mini de 100, maxi de 200
+
+#contours = feature.canny(matrice, sigma=3)
+#plt.imshow(contours,cmap='gray') #cmap = "gray" pour une gamme couleur en niveaux de gris
 
 # Application du flou gaussien (mode 'same' pour même taille)
 # boundary = "wrap" pour enroulement (bords)
@@ -36,13 +44,13 @@ norm_grad = np.sqrt(np.power(conv1,2)+np.power(conv2,2))
 
 # Afficher l'image originale
 plt.figure(figsize=(18, 10)) #taille de la figure : largeur 18 et hauteur 10
-plt.subplot(2, 1, 1) #2 lignes, 1 colonne, 1er plot
+plt.subplot(2, 2, 1) #2 lignes, 1 colonne, 1er plot
 plt.title("Image originale")
 plt.imshow(matrice, cmap='gray') #cmap = "gray" pour une gamme couleur en niveaux de gris
 plt.axis('off')
 
 # Afficher l'image après le flou gaussien
-plt.subplot(2, 1, 2) #2 lignes, 1 colonne, 2ème plot
+plt.subplot(2, 2, 2) #2 lignes, 1 colonne, 2ème plot
 plt.title("Image après flou gaussien")
 plt.imshow(img_array_gaussien, cmap='gray') 
 plt.axis('off')
@@ -53,9 +61,10 @@ plt.title("Norme du Gradient")
 plt.imshow(norm_grad, cmap='gray')
 plt.axis('off')
 
-plt.show()
+# Afficher après hystérésis
+plt.subplot(2, 2, 4) #2 lignes, 2 colonnes, 4ème plot
+plt.title("après hystérésis")
+plt.imshow(contours,cmap='gray') 
+plt.axis('off')
 
-##print(matrice)
-##print(matrice.shape)
-##(800,1200)
-#img.show()
+plt.show()

@@ -20,3 +20,9 @@ Les résultats sont affichés avec **Matplotlib** :
 * image originale ;
 * image après flou gaussien ;
 * norme du gradient.
+
+## 4. Filtre de hystérésis
+
+Ajout de la 4ème image après hystérésis en utilisant la librairie cv2.
+
+Cette librairie fait tout le travail fait précedement automatiquement puis applique le filtre hystérésis avec le seuil choisi (par défaut [100;200])
