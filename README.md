@@ -1,1 +1,1 @@
-# Documentation du code fait en cours de maths info
+# Documentation du code fait en cours de maths-info
