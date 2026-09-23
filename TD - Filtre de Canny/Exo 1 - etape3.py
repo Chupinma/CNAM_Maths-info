@@ -29,7 +29,7 @@ plt.title("Image RGB")
 plt.imshow(img_array, cmap='gray')
 plt.axis('off') # pas d'axes sur le graphique
 
-# 8. Afficher l'image après le flou gaussien
+# 8. Afficher l'image après le passage en grey scale
 plt.subplot(2, 2, 2) #2 lignes, 2 colonnes, 2ème plot
 plt.title("Image Grey scale")
 plt.imshow(M, cmap='gray')
