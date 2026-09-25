@@ -1,6 +1,7 @@
 from pye57 import E57
 import numpy as np
 import matplotlib.pyplot as plt
+import open3d as o3d
 
 filepath = r"D:\01_Travail_Etudes\01_Ecoles\CNAM\M2_2026-2027\Maths-info\Cours\1.3 - Cours Fichier E57\E57\Ex2.e57"
 
@@ -46,16 +47,24 @@ def voxelisation(points, taille_voxel):
     # Un seul point représentatif par voxel : le centroïde
     points_voxelises = np.array([ np.mean(pts, axis=0) for pts in voxels.values() ])
 
-    return points_voxelises, indices
+    return points_voxelises, indices, voxels
 
 
 # Variable de la taile des voxels
-taille_voxel=0.005
+taille_voxel=0.002
 
 # On applique la fonction qu'on à défini sur notre tableau numpy de points
-nuage_reduit, indices = voxelisation(points, taille_voxel)
+nuage_reduit, indices, voxels = voxelisation(points, taille_voxel)
 print("Points conservés :", len(nuage_reduit))
 
 # Afficher le nombre de voxels sur chacun des axes x, y et z
 Nb_voxels = indices.max(axis=0)+1
 print("Voxels par axe (x, y, z) : ", Nb_voxels)
+
+Voxel_pleins = np.unique(indices)
+print (voxels)
+
+# 2) Construction du nuage Open3D (pas de fichier intermédiaire)
+pcd = o3d.geometry.PointCloud()
+pcd.points = o3d.utility.Vector3dVector(points)
+print("Nombre de points avant :", len(pcd.points))
