@@ -2,7 +2,7 @@ from pye57 import E57
 import numpy as np
 import matplotlib.pyplot as plt
 
-filepath = r"D:\01_Travail_Etudes\01_Ecoles\CNAM\M2_2026-2027\Maths-info\Cours\1.3 - Cours Fichier E57\E57\Ex2.e57"
+filepath = r"D:\01_Travail_Etudes\01_Ecoles\CNAM\M2_2026-2027\USBM03 - Outils et méthodes de programmation en processus BIM\Cours\1.3 - Cours Fichier E57\E57\Ex2.e57"
 
 with E57(filepath) as e57:
 
